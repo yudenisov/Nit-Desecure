@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="B425957E-F4BE-4894-B46D-5E9ED656CC9D" Name="Nit Desecure" Language="1033" Version="1.0.0.0" Manufacturer="New Internet Technologies Inc." UpgradeCode="2FDDE13A-8A50-44A9-B140-3AD6930C7359">
+        <Package Description="NIT Desecure Some Catalogs" Comments="NIT Desecure Some Catalogs" InstallerVersion="200" Compressed="yes" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="INSTALLFOLDER" Name="Util">
+                <Component Id="DINJECTOR.EXE" DiskId="1" Guid="0367422A-0C56-44E9-8EB3-48C7DC31A923">
+                    <File Id="DINJECTOR.EXE" Name="dInjector.exe" Source="bin\dInjector.exe" />
+                </Component>
+                <Component Id="ECHO.BAT" DiskId="1" Guid="9EEBD576-72F8-4CBB-8571-CF47B27CB7C9">
+                    <File Id="ECHO.BAT" Name="Echo.bat" Source="bin\Echo.bat" />
+                </Component>
+                <Component Id="NIT.DESECURE_FORCE.BAT" DiskId="1" Guid="318E7DB3-F13F-4534-859B-07CC4DA496D3">
+                    <File Id="NIT.DESECURE_FORCE.BAT" Name="nit.desecure-force.bat" Source="bin\nit.desecure-force.bat" />
+                </Component>
+                <Component Id="NIT.DESECURE.BAT" DiskId="1" Guid="4ADE0E90-4856-472F-89A1-E7146BD1D4B0">
+                    <File Id="NIT.DESECURE.BAT" Name="nit.desecure.bat" Source="bin\nit.desecure.bat" />
+                </Component>
+                <Component Id="NIT.DESEQURE_FORCE.VBS" DiskId="1" Guid="99E66B42-F25C-4BFC-98DF-37F03B2F99DA">
+                    <File Id="NIT.DESEQURE_FORCE.VBS" Name="nit.desequre-force.vbs" Source="bin\nit.desequre-force.vbs" />
+                </Component>
+                <Component Id="NIT.DESEQURE.VBS" DiskId="1" Guid="99C5D30E-B4D4-488A-BC08-D72931D00E4F">
+                    <File Id="NIT.DESEQURE.VBS" Name="nit.desequre.vbs" Source="bin\nit.desequre.vbs" />
+                </Component>
+                <Component Id="NIT.ENSECURE_FORCE.BAT" DiskId="1" Guid="1C089991-EDE3-4968-BB58-EC781576A4A0">
+                    <File Id="NIT.ENSECURE_FORCE.BAT" Name="nit.ensecure-force.bat" Source="bin\nit.ensecure-force.bat" />
+                </Component>
+                <Component Id="NIT.ENSECURE.BAT" DiskId="1" Guid="E7FCDEB9-2039-48AC-AD1A-69176DD05031">
+                    <File Id="NIT.ENSECURE.BAT" Name="nit.ensecure.bat" Source="bin\nit.ensecure.bat" />
+                </Component>
+            </Directory>
+        </Directory>
+        <UI />
+        <UIRef Id="WixUI_InstallDir" />
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+        <Property Id="ROOTDRIVE" Value="C:\" />
+        <Feature Id="DefaultFeature" Title="Default Feature" Level="1" ConfigurableDirectory="TARGETDIR">
+            <ComponentRef Id="DINJECTOR.EXE" />
+            <ComponentRef Id="ECHO.BAT" />
+            <ComponentRef Id="NIT.DESECURE_FORCE.BAT" />
+            <ComponentRef Id="NIT.DESECURE.BAT" />
+            <ComponentRef Id="NIT.DESEQURE_FORCE.VBS" />
+            <ComponentRef Id="NIT.DESEQURE.VBS" />
+            <ComponentRef Id="NIT.ENSECURE_FORCE.BAT" />
+            <ComponentRef Id="NIT.ENSECURE.BAT" />
+        </Feature>
+        <InstallExecuteSequence>
+            <Custom Action="INSTALLUTILVARIABLE" After="InstallInitialize" />
+            <Custom Action="PostInstallation" Before="InstallFinalize" />
+        </InstallExecuteSequence>
+        <Binary Id="setuputilvariable" SourceFile="Scripts\setuputilvariable.vbs" />
+        <Binary Id="PostInstallation.vbs" SourceFile="Scripts\PostInstallation.vbs" />
+        <CustomAction Id="INSTALLUTILVARIABLE" BinaryKey="setuputilvariable" VBScriptCall="" HideTarget="no" Execute="deferred" Impersonate="no" Return="check" />
+        <CustomAction Id="PostInstallation" BinaryKey="PostInstallation.vbs" VBScriptCall="" HideTarget="no" Impersonate="no" Return="check" Execute="deferred" />
+    </Product>
+</Wix>
