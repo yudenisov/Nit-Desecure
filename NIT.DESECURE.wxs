@@ -54,5 +54,6 @@
         <Binary Id="PostInstallation.vbs" SourceFile="Scripts\PostInstallation.vbs" />
         <CustomAction Id="INSTALLUTILVARIABLE" BinaryKey="setuputilvariable" VBScriptCall="" HideTarget="no" Execute="deferred" Impersonate="no" Return="check" />
         <CustomAction Id="PostInstallation" BinaryKey="PostInstallation.vbs" VBScriptCall="" HideTarget="no" Impersonate="no" Return="check" Execute="deferred" />
+        <SetDirectory Id="INSTALLFOLDER" Value="[WindowsVolume]Util" />
     </Product>
 </Wix>
